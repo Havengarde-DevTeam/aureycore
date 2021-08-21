@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>aggregator</artifactId>
+        <groupId>net.havengarde.aureycore</groupId>
+        <version>1.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>aureycore</artifactId>
+    <version>1.0</version>
+    <packaging>jar</packaging>
+    <properties>
+        <conduit.version>1.0</conduit.version>
+    </properties>
+
+    <name>Aureycore</name>
+    <description>Plugin that loads Aureycore libraries</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.hayachikin.conduit</groupId>
+            <artifactId>conduit-annotations</artifactId>
+            <version>${conduit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.havengarde.aureycore</groupId>
+            <artifactId>aureycore-commons</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.havengarde.aureycore</groupId>
+            <artifactId>aureycore-customguis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.havengarde.aureycore</groupId>
+            <artifactId>aureycore-damage-indicator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.havengarde.aureycore</groupId>
+            <artifactId>aureycore-actionbar-engine</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.havengarde.aureycore</groupId>
+            <artifactId>aureycore-foundation</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>copy-files-on-build</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>../../Test Server/plugins</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${basedir}/target</directory>
+                                    <include>${project.build.finalName}.jar</include>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

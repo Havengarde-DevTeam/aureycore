@@ -1,0 +1,9 @@
+name: Aureycore
+version: ${project.version}
+main: net.havengarde.aureycore.plugin.Aureycore
+api-version: 1.16
+load: STARTUP
+authors: [ hayachikin, AureanAutumn ]
+prefix: Aureycore
+depend: [ LuckPerms ]
+description: ${project.description}
